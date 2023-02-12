@@ -1,0 +1,152 @@
+<form (ngSubmit)="save(firstName, lastName, ID)" #myForm="ngForm" class="example-form">
+  <h1>Register</h1>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label for="firstName">First name: </mat-label>
+      <input matInput placeholder="Israel" name="firstName" id="firstName" type="text" [(ngModel)]="user.FirstName"
+        #firstName="ngModel" minlength="2" pattern="[a-zA-Z]+" required>
+      <mat-error *ngIf="firstName.touched && firstName.errors?.['minlength']">
+        {{firstName.errors['minlength'].requiredLength}} chars are required but you wrote only
+        {{firstName.errors['minlength'].actualLength}}
+      </mat-error>
+      <mat-error *ngIf="firstName.touched && firstName.errors?.['required']" class="error">
+        First name is required!
+      </mat-error>
+      <mat-error *ngIf="firstName.touched && firstName.errors?.['pattern']" class="error">
+        First name cannot contain digits!
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label for="lastName">Last name: </mat-label>
+      <input matInput placeholder="Israeli" name="lastName" id="lastName" type="text" [(ngModel)]="user.LastName"
+        #lastName="ngModel" minlength="2" pattern="[a-zA-Z]+" required />
+
+      <mat-error *ngIf="lastName.touched && lastName.errors?.['minlength']" class="error">
+        {{lastName.errors['minlength'].requiredLength}} chars are required but you wrote only
+        {{lastName.errors['minlength'].actualLength}}
+      </mat-error>
+      <mat-error *ngIf="lastName.touched && lastName.errors?.['required']" class="error">
+        Last name is required!
+      </mat-error>
+      <mat-error *ngIf="lastName.touched && lastName.errors?.['pattern']" class="error">
+        Last name cannot contain digits!
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label for="Id">ID: </mat-label>
+      <input matInput placeholder="123456789" name="Id" id="Id" type="text" [(ngModel)]="user.IdNumber" #ID="ngModel"
+        minlength="9" maxlength="9" pattern="[0-9]+" required />
+
+      <mat-error *ngIf="ID.touched && (ID.errors?.['minlength'] ||ID.errors?.['manlength'])" class="error">
+        {{ID.errors['minlength'].requiredLength}} chars are required but you wrote
+        {{ID.errors['minlength'].actualLength}}
+      </mat-error>
+      <mat-error *ngIf="ID.touched && ID.errors?.['required']" class="error">
+        ID number is required!
+      </mat-error>
+      <mat-error *ngIf="ID.touched && ID.errors?.['pattern']" class="error">
+        ID number can contain only digits!
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label for="dateOfBirth">Date of birth: </mat-label>
+      <input matInput name="dateOfBirth" id="dateOfBirth" type="date" [(ngModel)]="user.DateOfBirth" />
+    </mat-form-field>
+  </div>
+
+
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label for="gender">Gender: </mat-label>
+      <mat-select name="gender" id="gender" type="number" [(ngModel)]="user.Gender">
+        <mat-option value="Male" selected>Male</mat-option>
+        <mat-option value="Female">Female</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label for="gender">HMO: </mat-label>
+      <mat-select name="gender" id="gender" type="number" [(ngModel)]="user.HMO">
+        <mat-option value="Macabi">Macabi</mat-option>
+        <mat-option value="Clalit" selected>Clalit</mat-option>
+        <mat-option value="Meuchedet">Meuchedet</mat-option>
+        <mat-option value="Leumit">Leumit</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+  <div>
+    <h2>Children: </h2>
+
+    <mat-form-field appearance="fill">
+      <mat-label for="childName">Child name: </mat-label>
+      <input matInput name="childName" id="childName" type="text" [(ngModel)]="userService.child.FirstName"
+        #name="ngModel" minlength="2" maxlength="13" pattern="[a-zA-Z]+" />
+
+      <mat-error *ngIf="name.touched && name.errors?.['minlength']" class="error">
+        {{name.errors['minlength'].requiredLength}} chars are required but you wrote only
+        {{name.errors['minlength'].actualLength}}
+      </mat-error>
+      <mat-error *ngIf="name.touched && name.errors?.['required']" class="error">
+        Name is required!
+      </mat-error>
+      <mat-error *ngIf="name.touched && name.errors?.['pattern']" class="error">
+        Name can contain only letters!
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label for="birthdate">Child birthdate: </mat-label>
+      <input matInput name="birthdate" id="birthdate" type="date" [(ngModel)]="userService.child.DateOfBirth" />
+    </mat-form-field>
+  </div>
+
+
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label for="childID">Child ID: </mat-label>
+      <input matInput name="childID" id="childID" type="text" [(ngModel)]="userService.child.IdNumber" #id="ngModel"
+        minlength="9" maxlength="9" pattern="[0-9]+" />
+
+      <mat-error *ngIf="id.touched && (id.errors?.['minlength'] ||id.errors?.['manlength'])" class="error">
+        {{id.errors['minlength'].requiredLength}} chars are required but you wrote
+        {{id.errors['minlength'].actualLength}}
+      </mat-error>
+      <mat-error *ngIf="id.touched && id.errors?.['required']" class="error">
+        ID number is required!
+      </mat-error>
+      <mat-error *ngIf="id.touched && id.errors?.['pattern']" class="error">
+        ID number can contain only digits!
+      </mat-error>
+    </mat-form-field>
+
+    <div>
+      <input class="inp" type="button" mat-raised-button color="primary" (click)="addChild()"
+        [disabled]="!name.valid&&id.valid" value="Add child" />
+    </div>
+  </div>
+
+  <div>
+    <input class="inp" type="submit" mat-raised-button color="primary" [disabled]="!myForm.valid" value="Confirm" />
+  </div>
+
+</form>
